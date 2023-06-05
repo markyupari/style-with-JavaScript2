@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+    <style>
+        .on {
+            background-color: orange;
+        }
+        div {
+            border-style: solid;
+            text-align: center;
+            padding: 50px;
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <!--assign onclick event a function for button START-->
+    <button onclick="start()">START</button>
+    <!--assign onclick event a function for button STOP-->
+    <button onclick="stop()">STOP</button>
+    <!--assign onclick event a function for button TOGGLE-->
+    <button onclick="toggle()">TOGGLE</button>
+    <!--assign id to target it with the functions on() and off()-->
+    <div id="target">Target</div>
+    <script>
+        //get element target to apply effects of onclick event function
+        const element = document.getElementById('target');
+        function toggle() {
+            //target gets the class 'on' so it gets its properties
+            element.classList.toggle('on');
+        }
+        //will handle timer event so I can stop timer later
+        let timer = null; 
+        function start() {
+            timer = setTimeout(() => {
+                //call function to toogle class in div element
+                toggle();
+                //call itself to make it a repetitive event
+                start();
+            }, 1000);
+        }
+        function stop() {
+            //clear timer so it stops calling the function 'start'
+            clearInterval(timer);
+        }
+    </script>
+</body>
+</html>
